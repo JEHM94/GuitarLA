@@ -33,7 +33,7 @@ const totalPagar = computed(() => {
                     <div class="carrito">
                         <img class="img-fluid" src="/img/carrito.png" alt="imagen carrito" />
 
-                        <div id="carrito" class="bg-white p-3">
+                        <div id="carrito" class="bg-white p-3 productos">
 
                             <p v-if="carrito.length === 0" class="text-center m-0">El carrito esta vacio</p>
 

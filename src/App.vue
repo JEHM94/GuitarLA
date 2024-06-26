@@ -1,10 +1,13 @@
 <script setup>
 
-import { ref, reactive, onMounted, watch } from "vue";
-import { db } from "./data/guitarras";
-import Guitarra from "./components/Guitarra.vue";
+import { ref, onMounted, watch } from 'vue';
+import { db } from './data/guitarras';
+import Guitarra from './components/Guitarra.vue';
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
+
+import { useToast } from 'vue-toast-notification';
+import 'vue-toast-notification/dist/theme-sugar.css';
 
 
 const guitarras = ref([])
@@ -35,11 +38,14 @@ const agregarCarrito = (guitarra) => {
     if (existeGuitarra < 0) {
         guitarra.cantidad = 1
         carrito.value.push(guitarra)
+        useToast().success('Añadido al carrito', { position: 'top-right' });
         return
     }
 
     if (carrito.value[existeGuitarra].cantidad >= 5) return
+
     carrito.value[existeGuitarra].cantidad++
+    useToast().success('Añadido al carrito', { position: 'top-right' });
 
 }
 
@@ -63,6 +69,7 @@ const eliminarProducto = (id) => {
 
 const vaciarCarrito = () => {
     carrito.value = []
+    useToast().info('Carrito eliminado', { position: 'top-right' });
 }
 
 </script>
